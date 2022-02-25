@@ -17,19 +17,20 @@ Book.prototype.toggleRead = function(){
 
 function formSubmit(){
     addBookToLibrary(form.title.value, form.author.value, form.pages.value, form.read.checked);
+    closeForm();
 }
 
 function addBookToLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
     myLibrary.push(book);
     displayBook(book);
-    closeForm();
+    
 }
 
 function displayBook(book) {
     let div = document.createElement('div');
     div.classList.add('book');
-    div.setAttribute("data-book-id", myLibrary.length-1);
+    div.setAttribute("data-id", myLibrary.length-1);
 
     let title = document.createElement('h3');
     title.innerText = `${book.title}`;
@@ -41,22 +42,41 @@ function displayBook(book) {
     pages.innerText = `Pages: ${book.pages}`;
     div.appendChild(pages);
     let read = document.createElement('p');
+    read.classList.add('read');
     read.innerText = `Read: ${book.read ? 'Read' : 'Unread'}`;
     div.appendChild(read);
     
     let buttons = document.createElement('div');
     buttons.classList.add('book-buttons');
+    buttons.setAttribute("data-id", myLibrary.length-1);
+
 
     let toggleButton = document.createElement('button');
     toggleButton.innerText = "Toggle Read";
+    toggleButton.addEventListener('click', onToggle);
     let deleteButton =  document.createElement('button');
     deleteButton.innerText = 'Delete';
+    deleteButton.addEventListener('click', onDelete)
     buttons.appendChild(toggleButton);
     buttons.appendChild(deleteButton);
     div.appendChild(buttons);
 
     library.appendChild(div);
 }
+
+function onToggle(e){
+    const id = e.target.parentNode.dataset.id;
+    myLibrary[id].read = !myLibrary[id].read;
+    const div = e.target.parentNode.parentNode;
+    div.querySelector('.read').innerText = `Read: ${myLibrary[id].read  ? 'Read' : 'Unread'}`;
+}
+
+
+function onDelete(e){
+    const div = e.target.parentNode.parentNode;
+    div.parentNode.removeChild(div);
+}
+
 
 function showCover() {
     let coverDiv = document.createElement('div');
@@ -99,6 +119,3 @@ document.getElementById('form-close').addEventListener('click', closeForm);
 document.getElementById('form-submit').addEventListener('click', formSubmit);
 
 addBookToLibrary('Klara and the sun', 'Kazuo Ishuguro', 307, false);
-for( book of myLibrary){
-    displayBook(book);
-}
