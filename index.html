@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./index.js" defer></script>
+    <title>Library</title>
+
+</head>
+<body>
+    <h1>Library</h1>
+    <button id="show-button">Add Book</button>
+    <div class="modal-container" id="container">
+        <div class="book-modal" id="book-modal">
+            <div id="form-close">&times;</div>
+            <form id="book-form" action="#">
+                <div class="form-field">
+                    <label for="title">Title: </label>
+                    <input type="text" name="title" id="title">
+                </div>
+                <div class="form-field">
+                    <label for="author">Author: </label>
+                    <input type="text" name="author" id="author">
+                </div>
+                <div class="form-field">
+                    <label for="pages">Number of Pages:</label>
+                    <input type="number" name="pages" id="pages">
+                </div>
+                <div class="form-field">
+                    <label for="read">Read: </label>
+                    <input type="checkbox" name="read" id="read">
+                </div>
+            </form>
+            <div class="form-buttons">
+                <button>Cancel</button>
+                <button id="form-submit">Submit</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="library" id="library">
+        <div class="book">
+            <h3>Title: Klara and the sun</h3>
+            <p>Author: Kazuo Ishiguro</p>
+            <p>Pages: 307</p>
+            <p>Read: Unread</p>
+            <div class="book-buttons">
+                <button>Toggle Read</button>
+                <button>Delete</button>
+            </div>
+        </div>
+        <div class="book">
+            <h3>Title: Klara and the sun</h3>
+            <p>Author: Kazuo Ishiguro</p>
+            <p>Pages: 307</p>
+            <p>Read: Unread</p>
+            <div class="book-buttons">
+                <button>Toggle Read</button>
+                <button>Delete</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

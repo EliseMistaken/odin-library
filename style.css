@@ -1,0 +1,100 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+button {
+    padding: 5px 10px;
+}
+
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.active {
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+.book-modal{
+    display: none;
+    background-color: white;
+    
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+#form-close{
+    text-align: right;
+    font-size:28px;
+}
+
+#form-close:hover{
+    cursor: pointer;
+}
+
+form {
+    width:400px;
+    padding: 1rem;
+
+}
+
+label {
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+}
+
+input[type=text], input[type=number]{
+    font: 1em sans-serif;
+    width: 250px;
+    box-sizing: border-box;
+}
+
+input[type=checkbox]{
+    margin-left: 0;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: right;
+    gap:20px;
+    padding-right:25px;
+}
+
+
+.library {
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+    
+}
+
+.book {
+    border: solid;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+#cover-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    opacity: .3;
+  }
+  
