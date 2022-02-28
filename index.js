@@ -97,14 +97,14 @@ function hideCover() {
 function closeForm() {
     hideCover();
     modal.style.display = 'none'; 
-    container.classList.remove('active');
+    container.classList.toggle('active');
 }
 
 function showBookForm() {
     clearForm();
     showCover();
     modal.style.display = 'block';
-    container.classList.add('active');
+    container.classList.toggle('active');
 }
 
 function clearForm(){

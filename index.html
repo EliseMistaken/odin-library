@@ -10,38 +10,40 @@
 
 </head>
 <body>
-    <h1>Library</h1>
-    <button id="show-button">Add Book</button>
-    <div class="modal-container" id="container">
-        <div class="book-modal" id="book-modal">
-            <div id="form-close">&times;</div>
-            <form id="book-form" action="#">
-                <div class="form-field">
-                    <label for="title">Title: </label>
-                    <input type="text" name="title" id="title">
-                </div>
-                <div class="form-field">
-                    <label for="author">Author: </label>
-                    <input type="text" name="author" id="author">
-                </div>
-                <div class="form-field">
-                    <label for="pages">Number of Pages:</label>
-                    <input type="number" name="pages" id="pages">
-                </div>
-                <div class="form-field">
-                    <label for="read">Read: </label>
-                    <input type="checkbox" name="read" id="read">
-                </div>
-            </form>
-            <div class="form-buttons">
-                <button>Cancel</button>
-                <button id="form-submit">Submit</button>
-            </div>
-
-        </div>
+    <div class="header">
+        <h1>Library</h1>
     </div>
-    <div class="library" id="library">
+    <div class="container">
+        <button id="show-button">Add Book</button>
+        <div class="modal-container" id="container">
+            <div class="book-modal" id="book-modal">
+                <div id="form-close">&times;</div>
+                <form id="book-form" action="#">
+                    <div class="form-field">
+                        <label for="title">Title: </label>
+                        <input type="text" name="title" id="title" minlength="1" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="author">Author: </label>
+                        <input type="text" name="author" id="author" minlength="1" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="pages">Number of Pages:</label>
+                        <input type="number" name="pages" id="pages" min="0">
+                    </div>
+                    <div class="form-field">
+                        <label for="read">Read: </label>
+                        <input type="checkbox" name="read" id="read">
+                    </div>
+                </form>
+                <div class="form-buttons">
+                    <button id="form-submit">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="library" id="library">
         
+        </div>
     </div>
     
 </body>
