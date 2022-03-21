@@ -1,36 +1,60 @@
-let myLibrary = [];
 let form = document.getElementById('book-form');
 let modal = document.getElementById('book-modal');
 let container = document.getElementById('container');
-let library = document.getElementById('library');
+let libraryElement = document.getElementById('library');
 
-
-function Book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-Book.prototype.toggleRead = function(){
-    this.read = !this.read;
-}
-
-function formSubmit(){
-    addBookToLibrary(form.title.value, form.author.value, form.pages.value, form.read.checked);
-    closeForm();
-}
-
-function addBookToLibrary(title, author, pages, read) {
-    let book = new Book(title, author, pages, read);
-    myLibrary.push(book);
-    displayBook(book);
+class Book  {
+    constructor (title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
     
+    toggleRead() {
+        this.read = !this.read;
+    }
+
+
+
+}
+
+class Library {
+    constructor() {
+        this.library = [];
+    }
+
+    addBookToLibrary(title, author, pages, read) {
+        let book = new Book(title, author, pages, read);
+        this.library.push(book);
+        displayBook(book);
+    }
+
+    toggleBook(id) {
+        console.log(this, id)
+        this.library[id].toggleRead();
+    }
+    
+}
+
+
+function onDelete(e){
+    const div = e.target.parentNode.parentNode;
+    div.parentNode.removeChild(div);
+}
+
+function onToggle(e){
+    const id = e.target.parentNode.dataset.id;
+    console.log(e.target)
+    lib.toggleBook(id)
+    const div = e.target.parentNode.parentNode;
+    div.querySelector('.read').innerText = `Read: ${lib.library[id].read  ? 'Read' : 'Unread'}`;
 }
 
 function displayBook(book) {
     let div = document.createElement('div');
     div.classList.add('book');
-    div.setAttribute("data-id", myLibrary.length-1);
+    div.setAttribute("data-id", lib.library.length-1);
 
     let title = document.createElement('h3');
     title.innerText = `${book.title}`;
@@ -48,12 +72,12 @@ function displayBook(book) {
     
     let buttons = document.createElement('div');
     buttons.classList.add('book-buttons');
-    buttons.setAttribute("data-id", myLibrary.length-1);
+    buttons.setAttribute("data-id", lib.library.length-1);
 
 
     let toggleButton = document.createElement('button');
     toggleButton.innerText = "Toggle Read";
-    toggleButton.addEventListener('click', onToggle);
+    toggleButton.addEventListener('click', onToggle); /* ++++ */
     let deleteButton =  document.createElement('button');
     deleteButton.innerText = 'Delete';
     deleteButton.addEventListener('click', onDelete)
@@ -61,22 +85,13 @@ function displayBook(book) {
     buttons.appendChild(deleteButton);
     div.appendChild(buttons);
 
-    library.appendChild(div);
+    libraryElement.appendChild(div);
 }
 
-function onToggle(e){
-    const id = e.target.parentNode.dataset.id;
-    myLibrary[id].read = !myLibrary[id].read;
-    const div = e.target.parentNode.parentNode;
-    div.querySelector('.read').innerText = `Read: ${myLibrary[id].read  ? 'Read' : 'Unread'}`;
+function formSubmit(){
+    lib.addBookToLibrary(form.title.value, form.author.value, form.pages.value, form.read.checked);
+    closeForm();
 }
-
-
-function onDelete(e){
-    const div = e.target.parentNode.parentNode;
-    div.parentNode.removeChild(div);
-}
-
 
 function showCover() {
     let coverDiv = document.createElement('div');
@@ -118,4 +133,5 @@ document.getElementById('show-button').addEventListener('click', showBookForm);
 document.getElementById('form-close').addEventListener('click', closeForm);
 document.getElementById('form-submit').addEventListener('click', formSubmit);
 
-addBookToLibrary('Klara and the sun', 'Kazuo Ishuguro', 307, false);
+let lib = new Library();
+lib.addBookToLibrary('Klara and the sun', 'Kazuo Ishuguro', 307, false);
